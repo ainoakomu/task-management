@@ -46,16 +46,16 @@ npm test         # Run all tests
 npm run test:unit
 npm run test:integration
 
-##Running the Project
+Running the Project
 npm install
 npm start
 
 
-##Server runs on:
+Server runs on:
 
 http://localhost:3000
 
 
-##Health check:
+Health check:
 
 GET /health
