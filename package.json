@@ -1,0 +1,22 @@
+{
+  "name": "task-service",
+  "version": "1.0.0",
+  "description": "task service API developed using TDD",
+  "keywords": [
+    "tdd",
+    "testing",
+    "node",
+    "jest"
+  ],
+  "license": "ISC",
+  "author": "Aino Komulainen",
+  "type": "commonjs",
+  "main": "src/server.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
