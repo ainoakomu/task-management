@@ -27,7 +27,7 @@ src/
 tests/
 ├─ unit/
 └─ integration/
-
+```
 
 ## Key Concepts
 
