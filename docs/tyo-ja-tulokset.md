@@ -2,6 +2,8 @@
 
 Tein: Alustin projektin aiheen, aikataulun, mahdolliset työkalut sekä palautin aiheeni ja opintotavoitteiden kohdat Moodleen. Rakensin projektin, alustin gitin ja tein repon GitHubiin. Aloitin tehtävän titlen validoinnista. Testeihin tule pari kohtaa, jossa testataan onko title oikein. Sitten ajettiin se punaiseksi, luotiin oikea validationError ja sitten validateTask funktio, jotta testi meni vihreäksi. Tässä hyödynnettiin klassista Red-Green-Refactor. Jonkin verran on ongelmia ymmärtää Expressin roolia, joten siksi olen keskittynyt siihen että jokaisessa kohdassa olisi hyvä kommentti. Se helpottaa myös sinua, projektin lukijaa että myös minua oppijana. Kirjoitin myös jonkinverran jo testaustrategiaa ja aloin etsiä Google Scholarista tekstejä. Harmikseen osaan joutuisi kirjautua, tai ne ovat maksumuurin takana eikä UEFilla ole sinne pääsyä. 
 
+Koodikatselmoinnissa havaittiin, että testien nimeäminen vaikutti merkittävästi luettavuuteen. Rakennetta selkeytettiin erottamalla validointi omaksi moduulikseen.
+
 
 ## Sprintti 2
 
@@ -11,3 +13,10 @@ TaskRepo on kuitenkin pidetty tarkoituksellisesti yksinkertaisena ja se sisält�
 
 TaskService toteutettiin TDD-prosessin mukaisesti: testit kirjoitettiin ensin ja toteutusta täydennettiin testien ohjaamana. Kehityksen aikana ilmeni virheitä myös “vihreissä” testiajoissa, jotka johtuivat puutteellisesta Jest-syntaksista (esim. toHaveBeenCalled("1") vs. toHaveBeenCalledTimes(1)). Nämä korjattiin testejä tarkentamalla, mikä vahvisti ymmärrystä testauskirjaston käytöstä.
 
+Yksikkötestaus löysi loogisia virheitä, kun taas koodikatselmointi paljasti rakenteellisia ongelmia, kuten vastuiden sekoittumista service- ja repo-kerrosten välillä.
+
+Mitä testaus paljasti tänään? 
+
+Mitä olisi mennyt tuotantoon ilman testejä? 
+
+Mikä oli vaikeinta testauksessa? 
