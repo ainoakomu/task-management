@@ -1,4 +1,4 @@
-const {ValidationError}=require("./errors");
+const {ValidationError,NotFoundError }=require("./errors");
 
 /*
 Tarkastaa onko task kirjoitettu oikein, muuten antaa validationError
@@ -12,5 +12,49 @@ function validateTask(task){
         throw new ValidationError("Task title must be non-empty string");
     }
 }
+/*
+Logiikka puoli taskeille
+*/
+function createTaskService({ taskRepo }) {
+  return {
+    //luo taski, jos se on validi
+    async createTask(task) {
+      validateTask(task);
+      return taskRepo.create(task);
+    },
 
-module.exports={validateTask};
+    //etsi taski id perusteella
+    async getTask(id) {
+      const task = await taskRepo.findById(id);
+      if (!task) {
+        throw new NotFoundError(`Task with id ${id} not found`);
+      }
+      return task;
+    },
+    //listaa taskit
+    async listTasks() {
+      return taskRepo.list();
+    },
+    //update taski id perusteella
+    async updateTask(id, patch) {
+      validateTask(patch);
+      const updated = await taskRepo.update(id, patch);
+      if (!updated) {
+        throw new NotFoundError(`Task with id ${id} not found`);
+      }
+      return updated;
+    },
+    //poista taski id perusteella
+    async deleteTask(id) {
+      const removed = await taskRepo.remove(id);
+      if (!removed) {
+        throw new NotFoundError(`Task with id ${id} not found`);
+      }
+    },
+  };
+}
+
+module.exports={
+    validateTask,
+    createTaskService
+};

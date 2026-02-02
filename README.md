@@ -40,16 +40,16 @@ Separation of concerns (app vs server vs domain)
 Domain validation using custom error classes
 
 ## Scripts
-
-npm start        # Start server
-npm test         # Run all tests
+```text
+npm start       
+npm test         
 npm run test:unit
 npm run test:integration
 
 Running the Project
 npm install
 npm start
-
+```
 
 Server runs on:
 
