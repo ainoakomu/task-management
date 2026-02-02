@@ -1,0 +1,7 @@
+## Sprintti 1
+Reflektio:
+Olen käyttänyt brainstromauksena apuna ChatGPT-tekoälyä. Sain huomautuksia rakenteeseen, (pitää kaikki mahd. erillään) sain apua Expressin asennukseen ja apua koodin kirjoitukseen. Koodaus on ollut hidasta, sillä olen halunnut ymmärtää kaiken mitä teen. Eli olen kommentoinut koodia myös itselleni, ei vain tavasta.Tämä siksi, jotta  
+taito JavaScriptin kanssa kehittyisi. On ollut kiva selvittää miten jest toimii ja miten oudon helposti testin voi kirjoittaa. Oikean koodin kanssa taas on ollut vaikeuksia. Olen todella tarkka siitä, että minun täytyy kriittisesti olla mukana, kun AI:n kanssa sparraa. Oppimisen näkökulmasta minua jännittää, annanko itselleni liikaa siimaa tekoälystä. Samalla kuitenkin muistutan itseäni, että olen todella pedanttinen ja tarkka siitä, että myös minun täytyy tietää mitä teen. Toivon että projektin edetessä pystyn näyttämään osaamiseni ja ymmärtämiseni, vaikka kooditaitoni eivät ole priimaa.
+
+## Sprintti 2
+ Jonkin verran on vaikeuksia sisäistää miten JavaScriptillä ne toimii. Tuo async() on vielä vaikea ymmärtää kunnolla. Jonkin verran Jestin syntaksin kanssa on ongelmia. En meinaa pysyä perässä niin monen syntaksin kanssa.Taskien data access on erikseen memory.js ja sen ns "portti" on taskRepossa, josta sitä kutsutaan. Tekoäly ilmaisi, että se olisi hyvä toiminto, koska toisessa on logiikka ja toinen on vain import. Eli arkkitehtuurinen valinta. 
