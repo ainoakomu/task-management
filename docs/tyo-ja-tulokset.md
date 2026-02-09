@@ -15,8 +15,7 @@ TaskService toteutettiin TDD-prosessin mukaisesti: testit kirjoitettiin ensin ja
 
 Yksikkötestaus löysi loogisia virheitä, kun taas koodikatselmointi paljasti rakenteellisia ongelmia, kuten vastuiden sekoittumista service- ja repo-kerrosten välillä.
 
-Mitä testaus paljasti tänään? 
 
-Mitä olisi mennyt tuotantoon ilman testejä? 
-
-Mikä oli vaikeinta testauksessa? 
+## Sprint 3
+Sprint 3 aloitettiin lisäämällä uusi domain-sääntö tehtävän tilalle (status).
+TDD-menetelmän mukaisesti kirjoitettiin ensin epäonnistuva yksikkötesti, joka määritteli vaaditun toiminnallisuuden ennen varsinaista toteutusta.

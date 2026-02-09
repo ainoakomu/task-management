@@ -5,3 +5,13 @@ taito JavaScriptin kanssa kehittyisi. On ollut kiva selvittää miten jest toimi
 
 ## Sprintti 2
  Jonkin verran on vaikeuksia sisäistää miten JavaScriptillä ne toimii. Tuo async() on vielä vaikea ymmärtää kunnolla. Jonkin verran Jestin syntaksin kanssa on ongelmia. En meinaa pysyä perässä niin monen syntaksin kanssa.Taskien data access on erikseen memory.js ja sen ns "portti" on taskRepossa, josta sitä kutsutaan. Tekoäly ilmaisi, että se olisi hyvä toiminto, koska toisessa on logiikka ja toinen on vain import. Eli arkkitehtuurinen valinta. 
+
+ ## Sprint 3
+ GitHub Actionsin ja CI/CD-putken käyttöönotto osoittautui opettavaisemmaksi vaiheeksi kuin aluksi oletin. Vaikka yksikkötestit toimivat paikallisesti, CI-ympäristö toi esiin useita ongelmia, jotka eivät olleet heti ilmeisiä kehityskoneella. 
+
+Ensimmäinen merkittävä havainto oli se, kuinka herkästi CI kaatuu pieniin yksityiskohtiin. Esimerkiksi tyhjä testitiedosto, jossa ei ollut yhtään testitapausta, pysäytti koko työnkulun. Yästä näkee kuinka Actions huomaa rakenteellisia virheitä, joita meikä koodari ei olis osannut odottaa.
+
+Staattisen koodianalyysin (ESLint) lisääminen toi mukanaan uusia haasteita. Käyttöönotossa ilmeni kuitenkin useita haasteita, kuten ESLintin uuden flat config -mallin ymmärtäminen sekä Node- ja Jest-ympäristöjen globaalien muuttujien määrittely. Tässä huomaa kuinka tekoälyavusteinen koodaus voi tuottaa virheitä tai mutkia, joita oikeasti kokenut koodari ei välttämättä tekisi. Koska on aloittelija eikä tunne työkaluja hyvin, on helppoa langeta virheisiin, koska "ei tiedä mitä tekee."
+Erityisesti oli klassinen tekoälytilanne, jossa moduulijärjestelmien (ESM ja CommonJS) sekoittuminen aiheutti virheitä. Eli aiemmin koodattu taskRepo.js oli käyttänyt ESM järjestelmää, eikä muualla projektissa olevaa CommonJS. Aloittelija, en olisi huomannut, mutta tekoäly nappasi virheen kun ESlint otettiin käyttöön. Kuitenkin tekoäly on ollut mukana koodauksessa, eli aloittelija on liian kiltisti kirjoittanut sen mitä on nähnyt-
+
+Lisäksi CI-putken vaiheiden järjestys osoittautui merkittäväksi. Aluksi ESLint ajettiin testien jälkeen, minkä vuoksi se ei aina ehtinyt suorittua, jos testit kaatuivat ensin. Eli jos jokin muu oli rikki, Actions vaan ei suorita sen alla olevia juttuja. Kun lint siirrettiin ennen testejä, staattinen analyysi alkoi toimia. 
