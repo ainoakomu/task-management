@@ -22,3 +22,6 @@ describe("validateTask", ()=>{
         expect(()=> validateTask({title:"Buy Milk"})).not.toThrow();
     });
 });
+test("CI break demo - this should fail", () => {
+  expect(true).toBe(false);
+});
