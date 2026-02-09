@@ -12,4 +12,8 @@ Moduulin tarkoitus on säilöä ja hakea taskeja
 
 */
 
-export { createTaskRepoMemory as createTaskRepo } from "./taskRepo.memory.js";
+const createTaskRepoMemory = require("./taskRepo.memory");
+
+module.exports = {
+  createTaskRepo: createTaskRepoMemory,
+};
