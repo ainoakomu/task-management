@@ -1,5 +1,7 @@
 const {ValidationError,NotFoundError }=require("./errors");
 
+
+const ALLOWED_STATUSES = new Set(["todo", "in_progress", "done"]);
 /*
 Tarkastaa onko task kirjoitettu oikein, muuten antaa validationError
 */
@@ -11,6 +13,16 @@ function validateTask(task){
     if (typeof title !== "string" || title.trim().length===0){
         throw new ValidationError("Task title must be non-empty string");
     }
+      // status-validointi
+  if (task?.status !== undefined) {
+    const status = task.status;
+
+    if (typeof status !== "string" || !ALLOWED_STATUSES.has(status)) {
+      throw new ValidationError("Invalid status");
+    }
+  }
+
+  return true;
 }
 /*
 Logiikka puoli taskeille
@@ -56,5 +68,6 @@ function createTaskService({ taskRepo }) {
 
 module.exports={
     validateTask,
-    createTaskService
+    createTaskService,
+    ALLOWED_STATUSES,
 };

@@ -1,6 +1,6 @@
 //ns importit
-const { ValidationError } = require("../../src/errors");
-const { validateTask } = require("../../src/taskService");
+const { ValidationError } = require("../../src/tasks/errors");
+const {validateTask} = require("../../src/tasks/taskService");
 
 //testit task status validoinnille
 describe("Task status validation", () => {

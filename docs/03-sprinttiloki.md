@@ -1,3 +1,44 @@
+ Mitä toteutettiin?
+
+Mitä virheitä löytyi?
+
+Mikä menetelmä löysi ne?
+
+Oliko jotain poikkeamaa TDD:stä?
+Sprintin reflektiomalli
+1. Mitä opin teknisesti?
+
+Uusi käsite / työkalu
+
+Mikä oli vaikeaa?
+
+Mikä selkeytyi?
+
+2. Miten TDD toimi tässä sprintissä?
+
+Oliko Red–Green–Refactor systemaattinen?
+
+Löytyikö virheitä testien avulla?
+
+Poikkesinko TDD:stä? Miksi?
+
+3. Miten sprinttirakenne (Scrum-ajattelu) vaikutti?
+
+Oliko tavoite selkeä?
+
+Oliko työ rajattua?
+
+Tuntuiko “valmis” selkeästi määritellyltä?
+
+4. Miten laadunvarmistus (CI, lint, katselmointi) vaikutti?
+
+Mitä paljastui?
+
+Mitä opin työkalujen roolista?
+
+5. Mitä tekisin toisin seuraavassa sprintissä?
+ 
+ 
   ##  Sprintti 1
 
 Tein: Alustin projektin aiheen, aikataulun, mahdolliset työkalut sekä palautin aiheeni ja opintotavoitteiden kohdat Moodleen. Rakensin projektin, alustin gitin ja tein repon GitHubiin. Aloitin tehtävän titlen validoinnista. Testeihin tule pari kohtaa, jossa testataan onko title oikein. Sitten ajettiin se punaiseksi, luotiin oikea validationError ja sitten validateTask funktio, jotta testi meni vihreäksi. Tässä hyödynnettiin klassista Red-Green-Refactor. Jonkin verran on ongelmia ymmärtää Expressin roolia, joten siksi olen keskittynyt siihen että jokaisessa kohdassa olisi hyvä kommentti. Se helpottaa myös sinua, projektin lukijaa että myös minua oppijana. Kirjoitin myös jonkinverran jo testaustrategiaa ja aloin etsiä Google Scholarista tekstejä. Harmikseen osaan joutuisi kirjautua, tai ne ovat maksumuurin takana eikä UEFilla ole sinne pääsyä. 
@@ -19,3 +60,13 @@ Yksikkötestaus löysi loogisia virheitä, kun taas koodikatselmointi paljasti r
 ## Sprint 3
 Sprint 3 aloitettiin lisäämällä uusi domain-sääntö tehtävän tilalle (status).
 TDD-menetelmän mukaisesti kirjoitettiin ensin epäonnistuva yksikkötesti, joka määritteli vaaditun toiminnallisuuden ennen varsinaista toteutusta.
+ 
+ Jostain syystä oli kirjoitusvirhe eikä validation error importannut kunnolla. Sen napattua testi meni oikeasti "red", oikeasta syystä -> ei ollut funktiota jota testata.
+
+ Sprintti 3 – testiajo
+
+Menetelmä: Unit test (Jest)
+Löydös: Cannot find module '../../src/errors'
+Missä: tests/unit/taskStatus.test.js
+Syy: Virheellinen import-polku / tiedostonimi
+Korjaus: Polun yhtenäistäminen toimivien testien kanssa
