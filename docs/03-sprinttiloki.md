@@ -61,12 +61,14 @@ Yksikkötestaus löysi loogisia virheitä, kun taas koodikatselmointi paljasti r
 Sprint 3 aloitettiin lisäämällä uusi domain-sääntö tehtävän tilalle (status).
 TDD-menetelmän mukaisesti kirjoitettiin ensin epäonnistuva yksikkötesti, joka määritteli vaaditun toiminnallisuuden ennen varsinaista toteutusta.
  
- Jostain syystä oli kirjoitusvirhe eikä validation error importannut kunnolla. Sen napattua testi meni oikeasti "red", oikeasta syystä -> ei ollut funktiota jota testata.
-
- Sprintti 3 – testiajo
 
 Menetelmä: Unit test (Jest)
 Löydös: Cannot find module '../../src/errors'
 Missä: tests/unit/taskStatus.test.js
 Syy: Virheellinen import-polku / tiedostonimi
 Korjaus: Polun yhtenäistäminen toimivien testien kanssa
+
+Menetelmä: integraatiotesti (supertest)
+Löydös: validi POST palautti 400
+Juuri-syy: express.json() middleware oli reitin jälkeen → req.body tyhjä
+Korjaus: middleware siirrettiin reittien yläpuolelle
