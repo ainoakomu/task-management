@@ -87,7 +87,19 @@ Löydös: GET /tasks puuttui (404)
 Korjaus: lisättiin GET-reitti, joka palauttaa listan
 
 Menetelmä: integraatiotesti
-
 Löydös: debug-logit jäivät vahingossa päälle
-
 Korjaus: poistettiin console.log ennen mergeä (CI-hygienia)
+
+Toteutettu:
+POST /tasks (luonti + validointi)
+GET /tasks (listaus)
+Error-middleware (400 / 404)
+Integraatiotestit supertestillä
+
+Löydökset:
+Middleware-järjestys vaikutti req.body:yn (express.json)
+CommonJS export/import mismatch (createTaskRepo)
+ESLint havaitsi käyttämättömän parametrin
+
+Havainto:
+Integraatiotestit paljastivat kerrosten yhteistoimintaan liittyviä virheitä, joita yksikkötestit eivät löytäneet.

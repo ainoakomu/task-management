@@ -12,7 +12,7 @@ Moduulin tarkoitus on säilöä ja hakea taskeja
 
 */
 
-const createTaskRepoMemory = require("./taskRepo.memory");
+const { createTaskRepoMemory } = require("./taskRepo.memory");
 
 module.exports = {
   createTaskRepo: createTaskRepoMemory,
