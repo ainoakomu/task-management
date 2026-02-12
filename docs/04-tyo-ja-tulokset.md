@@ -29,10 +29,6 @@ Lisäksi ilmeni testikirjaston (Jest) syntaksivirheitä, jotka havaittiin “vih
 
 Sprintti 3:
 Uusi domain-sääntö (status) toteutettiin testilähtöisesti ilman merkittäviä syntaksiongelmia.
-REST- rajapinnan CRUD operaatiot
-Error-middleware ja integraatiotestit Supertestillä
-Integraatiotestit paljastivat useita kerrosten yhteistoimintaan liittyviä virheitä, kuten middleware-järjestyksen vaikutuksen req.body:n arvoon sekä create- ja patch-validoinnin sopimuserot.
-
 Sprintti 3:ssa yksikkötestaus varmisti status-validoinnin ja update-logiikan oikeellisuuden, mutta ei paljastanut middleware- tai HTTP-tason virheitä.
 
 ## 2.2 Koodikatselmointi
@@ -49,6 +45,9 @@ GitHub Actions -CI sekä ESLint:
 Paljastivat konfiguraatio- ja export-virheitä
 Estivät rikkinäisen koodin yhdistämisen
 ESLint havaitsi käyttämättömän parametrin error-middlewareissa, mikä osoitti staattisen analyysin roolin laadun varmistajana myös silloin, kun testit ovat vihreänä.
+## 2.4 Integraatiotestaus
+Integraatiotestit paljastivat useita kerrosten yhteistoimintaan liittyviä virheitä, kuten middleware-järjestyksen vaikutuksen req.body:n arvoon sekä create- ja patch-validoinnin sopimuserot.
+Testauksessa katsottiin RESTI-rajapinnan operaatioiden toteutus ja error-middlewaren toiminta. Käytettiin Supertestiä työnkaluna ja huomattiin "create" vs "patch" validoinnin ero.
 
 ## 3. TDD-prosessin kehittyminen sprinttien välillä
 

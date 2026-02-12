@@ -60,6 +60,33 @@ Yksikkötestaus löysi loogisia virheitä, kun taas koodikatselmointi paljasti r
 ## Sprint 3
 Sprint 3 aloitettiin lisäämällä uusi domain-sääntö tehtävän tilalle (status).
 TDD-menetelmän mukaisesti kirjoitettiin ensin epäonnistuva yksikkötesti, joka määritteli vaaditun toiminnallisuuden ennen varsinaista toteutusta.
+
+ Toteutettiin REST: CRUD toiminnot. Oli virheita validoinnista, titleistä, ja joitakin import ongelmia
+Supertest, actionsin lint näytti suurimman osan ongelmista
+Actionsin käyttö on kivaa, ja kokoajan enemmän helpottuu ns kokonaisvaltainen ymmärrys.
+CRUD-tarkoitus on vielä vaikea ymmärtää, ja joskus lintin virheen tajuaminen.
+Jest sujuu mutkitta, mutta testitapauksien keksiminen on vaikeaa.
+
+Red-Green onnistuu mutta Refactor vaihe meinaa unohtua. Olen muistanut nyt CRUD vaiheessa sitä harjoittaa.
+Virheitä löytyi muutamia tässäkin sprintissä joita alla.
+
+Poikkesinko TDD:stä? Miksi?
+
+3. Miten sprinttirakenne (Scrum-ajattelu) vaikutti?
+
+Oliko tavoite selkeä?
+
+Oliko työ rajattua?
+
+Tuntuiko “valmis” selkeästi määritellyltä?
+
+4. Miten laadunvarmistus (CI, lint, katselmointi) vaikutti?
+
+Mitä paljastui?
+
+Mitä opin työkalujen roolista?
+
+5. Mitä tekisin toisin seuraavassa sprintissä?
  
 
 Menetelmä: Unit test (Jest)
@@ -79,7 +106,6 @@ Menetelmä: Staattinen analyysi (ESLint, GitHub Actions)
 Löydös: 'next' is defined but never used (src/app.js, error-middleware)
 Juuri-syy: Error-middleware määriteltiin Expressin vaatimalla neljän parametrin muodolla (err, req, res, next), mutta next-parametria ei käytetty, mikä aiheutti ESLint-varoituksen.
 Korjaus: Parametri nimettiin muotoon _next, jolloin middleware säilyi Express-yhteensopivana ja lint-virhe poistui.
-
 Havainto: Staattinen analyysi paljasti koodin laatuun liittyvän ongelman, jota yksikkö- tai integraatiotestit eivät olisi löytäneet.
 
 Menetelmä: integraatiotesti (supertest)
@@ -95,7 +121,6 @@ POST /tasks (luonti + validointi)
 GET /tasks (listaus)
 Error-middleware (400 / 404)
 Integraatiotestit supertestillä
-
 Löydökset:
 Middleware-järjestys vaikutti req.body:yn (express.json)
 CommonJS export/import mismatch (createTaskRepo)
@@ -103,13 +128,9 @@ ESLint havaitsi käyttämättömän parametrin
 
 Havainto:
 Integraatiotestit paljastivat kerrosten yhteistoimintaan liittyviä virheitä, joita yksikkötestit eivät löytäneet.
-
 Menetelmä: integraatiotesti (supertest)
-
 Löydös: GET /tasks/:id puuttui → 404/route missing
-
 Korjaus: lisättiin reitti, joka kutsuu service.getTask
-
 Lisäksi: NotFoundError mapitettiin HTTP 404:ksi error-middlewarella
 
 Menetelmä: Integraatiotesti (supertest)
@@ -118,9 +139,11 @@ Juuri-syy: Päivityksessä käytettiin create-validointia (validateTask), joka v
 Korjaus: Toteutettiin validateTaskPatch, jossa kentät ovat optional (title/status validoidaan vain jos mukana). Tämän jälkeen validi päivitys palauttaa 200 ja puuttuva id palauttaa NotFoundErrorin kautta 404.
 
 Menetelmä: integraatiotesti
-
 Löydös: DELETE route puuttui
-
 Korjaus: toteutettiin DELETE /tasks/:id ja liitettiin service.deleteTaskiin
-
 Havainto: NotFoundError mapittuu 404:ksi error-middlewarella
+
+Menetelmä: ESLint (CI)
+Löydös: käyttämättömät importit ja testimuuttujat
+Korjaus: poistettiin turhat muuttujat
+Havainto: staattinen analyysi ylläpitää koodin siisteyttä myös toiminnallisesti oikein toimivassa tilanteessa

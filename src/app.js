@@ -9,8 +9,6 @@ const taskService = createTaskService({ taskRepo });
 const express=require("express");
 //luo express-ilmentymän
 const app=express();
-//import validointi funktio taskService.js:sta
-const {validateTask}=require("./tasks/taskService");
 
 //middleware parses json requests
 app.use(express.json());

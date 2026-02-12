@@ -83,7 +83,7 @@ test("PATCH /tasks/:id updates task status", async () => {
 });
 
     test("PATCH /tasks/:id returns 404 for missing id", async () => {
-        const res=await request(app)
+        await request(app)
         .patch("/tasks/non-existing-id")
         .send({ status: "done" })
         .expect(404);
