@@ -81,3 +81,13 @@ Juuri-syy: Error-middleware määriteltiin Expressin vaatimalla neljän parametr
 Korjaus: Parametri nimettiin muotoon _next, jolloin middleware säilyi Express-yhteensopivana ja lint-virhe poistui.
 
 Havainto: Staattinen analyysi paljasti koodin laatuun liittyvän ongelman, jota yksikkö- tai integraatiotestit eivät olisi löytäneet.
+
+Menetelmä: integraatiotesti (supertest)
+Löydös: GET /tasks puuttui (404)
+Korjaus: lisättiin GET-reitti, joka palauttaa listan
+
+Menetelmä: integraatiotesti
+
+Löydös: debug-logit jäivät vahingossa päälle
+
+Korjaus: poistettiin console.log ennen mergeä (CI-hygienia)
