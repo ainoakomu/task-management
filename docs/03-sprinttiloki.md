@@ -103,3 +103,24 @@ ESLint havaitsi käyttämättömän parametrin
 
 Havainto:
 Integraatiotestit paljastivat kerrosten yhteistoimintaan liittyviä virheitä, joita yksikkötestit eivät löytäneet.
+
+Menetelmä: integraatiotesti (supertest)
+
+Löydös: GET /tasks/:id puuttui → 404/route missing
+
+Korjaus: lisättiin reitti, joka kutsuu service.getTask
+
+Lisäksi: NotFoundError mapitettiin HTTP 404:ksi error-middlewarella
+
+Menetelmä: Integraatiotesti (supertest)
+Löydös: PATCH palautti aluksi 400 myös validissa status-päivityksessä, ja “missing id” ei palauttanut 404:ää.
+Juuri-syy: Päivityksessä käytettiin create-validointia (validateTask), joka vaatii title-kentän, vaikka PATCH on osittainen päivitys.
+Korjaus: Toteutettiin validateTaskPatch, jossa kentät ovat optional (title/status validoidaan vain jos mukana). Tämän jälkeen validi päivitys palauttaa 200 ja puuttuva id palauttaa NotFoundErrorin kautta 404.
+
+Menetelmä: integraatiotesti
+
+Löydös: DELETE route puuttui
+
+Korjaus: toteutettiin DELETE /tasks/:id ja liitettiin service.deleteTaskiin
+
+Havainto: NotFoundError mapittuu 404:ksi error-middlewarella

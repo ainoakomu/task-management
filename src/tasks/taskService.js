@@ -24,6 +24,19 @@ function validateTask(task){
 
   return true;
 }
+function validateTaskPatch(patch) {
+  if (patch.title !== undefined) {
+     if (typeof patch.title !== "string" || patch.title.trim().length === 0) {
+      throw new ValidationError("Task title must be non-empty string");
+    }
+  }
+  if (patch.status !== undefined) {
+    if (typeof patch.status !== "string" || !ALLOWED_STATUSES.has(patch.status)) {
+      throw new ValidationError("Invalid status");
+    }
+  }
+  return true;
+} 
 /*
 Logiikka puoli taskeille
 */
@@ -49,7 +62,7 @@ function createTaskService({ taskRepo }) {
     },
     //update taski id perusteella
     async updateTask(id, patch) {
-      validateTask(patch);
+      validateTaskPatch(patch);
       const updated = await taskRepo.update(id, patch);
       if (!updated) {
         throw new NotFoundError(`Task with id ${id} not found`);

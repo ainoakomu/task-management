@@ -37,6 +37,33 @@ app.get("/tasks", async (req, res, next) => {
     next(err);
   }
 });
+//GET /tasks/:id palauttaa tehtävän id:llä
+app.get("/tasks/:id", async (req, res, next) => {
+  try {
+    const task = await taskService.getTask(req.params.id);
+    res.json(task);
+  } catch (err) {
+    next(err);
+  }
+});
+//PATCH /tasks/:id päivittää tehtävän id:llä
+app.patch("/tasks/:id", async (req, res, next) => {
+  try {
+    const updated = await taskService.updateTask(req.params.id, req.body);
+    res.json(updated);
+  } catch (err) {
+    next(err);
+  }
+});
+//DELETE /tasks/:id poistaa tehtävän id:llä
+app.delete("/tasks/:id", async (req, res, next) => {
+  try {
+    await taskService.deleteTask(req.params.id);
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+});
 //error handling middleware
 app.use((err,req,res,next)=>{
     void next;
