@@ -72,3 +72,12 @@ Menetelmä: integraatiotesti (supertest)
 Löydös: validi POST palautti 400
 Juuri-syy: express.json() middleware oli reitin jälkeen → req.body tyhjä
 Korjaus: middleware siirrettiin reittien yläpuolelle
+
+
+
+Menetelmä: Staattinen analyysi (ESLint, GitHub Actions)
+Löydös: 'next' is defined but never used (src/app.js, error-middleware)
+Juuri-syy: Error-middleware määriteltiin Expressin vaatimalla neljän parametrin muodolla (err, req, res, next), mutta next-parametria ei käytetty, mikä aiheutti ESLint-varoituksen.
+Korjaus: Parametri nimettiin muotoon _next, jolloin middleware säilyi Express-yhteensopivana ja lint-virhe poistui.
+
+Havainto: Staattinen analyysi paljasti koodin laatuun liittyvän ongelman, jota yksikkö- tai integraatiotestit eivät olisi löytäneet.

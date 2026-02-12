@@ -23,7 +23,8 @@ app.post("/tasks",(req,res,next)=>{
 });
 
 //error handling middleware
-app.use((err,req,res,_next)=>{
+app.use((err,req,res,next)=>{
+    void next;
     if(err.name==="ValidationError"){
          return res.status(400).json({error:err.message});
     }
