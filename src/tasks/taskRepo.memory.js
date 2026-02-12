@@ -5,8 +5,8 @@ function now() {
   return new Date().toISOString();
 }
 
- function createTaskRepoMemory() {
-    //internal storage
+function createTaskRepoMemory() {
+  //internal storage
   const tasksById = new Map();
   let nextId = 1;
 
@@ -18,7 +18,7 @@ function now() {
       const createdTask = {
         id,
         title: task.title,
-        status: task.status ?? "todo",//use default only if null
+        status: task.status ?? "todo", //use default only if null
         createdAt: now(),
         updatedAt: now(),
       };
@@ -28,13 +28,9 @@ function now() {
     },
 
     async findById(id) {
-        //use default only if null
+      //use default only if null
       return tasksById.get(id) ?? null;
     },
-
-
-
-    
 
     async list() {
       return Array.from(tasksById.values());
@@ -54,19 +50,6 @@ function now() {
       tasksById.set(id, updated);
       return updated;
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     async remove(id) {
       return tasksById.delete(id);
