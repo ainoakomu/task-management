@@ -17,7 +17,7 @@
     "test": "tests"
   },
   "scripts": {
-     "lint": "eslint .",
+    "lint": "eslint .",
     "start": "node src/server.js",
     "test": "jest",
     "test:unit": "jest tests/unit",

@@ -70,23 +70,28 @@ Jest sujuu mutkitta, mutta testitapauksien keksiminen on vaikeaa.
 Red-Green onnistuu mutta Refactor vaihe meinaa unohtua. Olen muistanut nyt CRUD vaiheessa sitä harjoittaa.
 Virheitä löytyi muutamia tässäkin sprintissä joita alla.
 
-Poikkesinko TDD:stä? Miksi?
+Tavoite oli selkeä, mutta iso. Sen tekoo meni reilusti päivästä 5-6h tuntia. Ehkä sprintin rajaus olisi kokeneelle sopiva, mutta itselle vielä hidasta.
 
-3. Miten sprinttirakenne (Scrum-ajattelu) vaikutti?
+Integraatiotesti paljasti middleware-järjestysvirheen
 
-Oliko tavoite selkeä?
+Ongelma: express.json() oli reittien alla → req.body tyhjä → validi POST palautti 400.
 
-Oliko työ rajattua?
+Miksi tärkeä: yksikkötestit eivät voi nähdä middleware-ketjua, integraatiotestit näkee.
 
-Tuntuiko “valmis” selkeästi määritellyltä?
+CommonJS export/import mismatch (repo factory)
 
-4. Miten laadunvarmistus (CI, lint, katselmointi) vaikutti?
+Ongelma: require("./taskRepo.memory") palautti olion, mutta sitä käytettiin kuin funktiota → createTaskRepo is not a function.
 
-Mitä paljastui?
+Miksi tärkeä: konfiguraatio/arkkitehtuuri bugi, ei “domain-bugi”.
 
-Mitä opin työkalujen roolista?
+PATCH käytti väärää validointia
 
-5. Mitä tekisin toisin seuraavassa sprintissä?
+Ongelma: updateTask validoi patchin validateTask-funktiolla, joka vaatii titleä → 400 vaikka status oli validi.
+Korjaus: validateTaskPatch (partial update).
+Miksi tärkeä: API-sopimus (PATCH) ≠ create-sopimus.
+ESLint
+Ongelma: unused next, unused validateTask, unused res testissä.
+Miksi tärkeä: CI varmistaa laadun myös “vihreissä testeissä”.
  
 
 Menetelmä: Unit test (Jest)
