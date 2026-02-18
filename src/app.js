@@ -1,21 +1,24 @@
 //importataan taskRepo ja taskService
 const { createTaskRepo } = require("./tasks/taskRepo");
 const { createTaskService } = require("./tasks/taskService");
+
 //luodaan taskRepo ja taskService ilmentymät
 const taskRepo = createTaskRepo();
 const taskService = createTaskService({ taskRepo });
 
 //import Express
-const express=require("express");
+const express = require("express");
 //luo express-ilmentymän
-const app=express();
+const app = express();
 
 //middleware parses json requests
 app.use(express.json());
+//middleware palvelee staattisia tiedostoja public-kansiosta
+app.use(express.static("public"));
 
 //Checkpoint, verifioidaan että app toimii
-app.get("/health",(req,res)=>{
-    res.json({status:"ok"});
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
 });
 //POST /tasks luo uuden tehtävän
 app.post("/tasks", async (req, res, next) => {
@@ -63,15 +66,15 @@ app.delete("/tasks/:id", async (req, res, next) => {
   }
 });
 //error handling middleware
-app.use((err,req,res,next)=>{
-    void next;
-    if(err.name==="ValidationError"){
-         return res.status(400).json({error:err.message});
-    }
-    if (err.name === "NotFoundError") {
+app.use((err, req, res, next) => {
+  void next;
+  if (err.name === "ValidationError") {
+    return res.status(400).json({ error: err.message });
+  }
+  if (err.name === "NotFoundError") {
     return res.status(404).json({ error: err.message });
-    }
-    return res.status(500).json({error:"Internal Server Error"}); 
+  }
+  return res.status(500).json({ error: "Internal Server Error" });
 });
 
-module.exports=app;
+module.exports = app;
