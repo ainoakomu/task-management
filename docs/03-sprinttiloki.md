@@ -90,10 +90,9 @@ Ongelma: updateTask validoi patchin validateTask-funktiolla, joka vaatii titleä
 Korjaus: validateTaskPatch (partial update).
 Miksi tärkeä: API-sopimus (PATCH) ≠ create-sopimus.
 ESLint
+
 Ongelma: unused next, unused validateTask, unused res testissä.
 Miksi tärkeä: CI varmistaa laadun myös “vihreissä testeissä”.
- 
-
 Menetelmä: Unit test (Jest)
 Löydös: Cannot find module '../../src/errors'
 Missä: tests/unit/taskStatus.test.js

@@ -9,7 +9,6 @@ describe("Task status validation", () => {
       title: "Test task",
       status: "finished", 
     };
-
     expect(() => validateTask(task)).toThrow(ValidationError);
   });
 });

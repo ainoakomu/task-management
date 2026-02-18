@@ -112,3 +112,23 @@ test("DELETE /tasks/:id returns 404 for missing id", async () => {
     .delete("/tasks/999999")
     .expect(404);
 });
+
+test("Full CRUD flow works end-to-end", async () => {
+  const created = await request(app)
+    .post("/tasks")
+    .send({ title: "Flow", status: "todo" })
+    .expect(201);
+
+  const id = created.body.id;
+
+  await request(app).get(`/tasks/${id}`).expect(200);
+
+  await request(app)
+    .patch(`/tasks/${id}`)
+    .send({ status: "done" })
+    .expect(200);
+
+  await request(app).delete(`/tasks/${id}`).expect(204);
+
+  await request(app).get(`/tasks/${id}`).expect(404);
+});
