@@ -116,6 +116,7 @@ function render() {
         setStatus(`Virhe päivitettäessä status: ${err.message}`);
     }
     });
+
     //delete napin luonti
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
@@ -132,12 +133,37 @@ function render() {
             setStatus(`Virhe poistaessa tehtävää: ${err.message}`);
         }
     });
+    //edit napin luonti
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.type = "button";
+    editBtn.style.marginLeft = "8px";
+    editBtn.addEventListener("click", async () => {
+        const newTitle = prompt("Uusi otsikko:", task.title);
+        if (newTitle === null) return; // Käyttäjä peruutti
+        const trimmedTitle = newTitle.trim();
+        if (!trimmedTitle) {
+            setStatus("Virhe: title ei voi olla tyhjä.");
+            return;
+        }
+
+
+        try {
+            setStatus("Päivitetään title..");
+            await apiUpdateTask(task.id, { title: trimmedTitle });
+            await loadTasks();
+            setStatus(`Title päivitetty: ${task.title} -> ${trimmedTitle}`);    
+        } catch (err) {
+            console.error(err);
+            setStatus(`Virhe päivitettäessä title: ${err.message}`);
+        }
+    });
 
     //Lisätään napit ja teksti listaelementtiin
     li.appendChild(text);
     li.appendChild(toggleBtn);
     li.appendChild(deleteBtn);
-
+    li.appendChild(editBtn);
     //Lisätään tehtävä listaan
     taskList.appendChild(li);
   }

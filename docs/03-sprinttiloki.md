@@ -151,3 +151,40 @@ Menetelmä: ESLint (CI)
 Löydös: käyttämättömät importit ja testimuuttujat
 Korjaus: poistettiin turhat muuttujat
 Havainto: staattinen analyysi ylläpitää koodin siisteyttä myös toiminnallisesti oikein toimivassa tilanteessa
+
+## Sprint 4
+
+Lähettiin tekemään ensimmäistä UI puolta ja se ei mennyt TDD perusteisesti. UI täyty lähteä tekemään runkoa ja funktioita. Koska backend on projektin tärkein osa, jota tehdään TDDllä, UI on vain "extra" tai koriste, jolla saadaan esiin backendillä tehty työ. UI on kuin tukikerros
+UI toteutettiin ilman TDD-prosessia, koska projektin tutkimuksellinen ja pedagoginen fokus oli backend-kerroksen testauksessa. Käyttöliittymä toimi demonstraatiokerroksena, ei varsinaisena testattavana komponenttina.
+TDD ei ole uskonto.
+Sitä käytetään siellä missä se tuottaa eniten arvoa.
+Ja tässä projektissa suurin arvo oli:
+domain-logiikassa
+virheenkäsittelyssä
+API-sopimuksessa
+CI-putkessa
+Ei UI:n nappeissa.
+
+Ympäristö:
+- Node + Express käynnissä paikallisesti
+- UI: http://localhost:3000/
+
+# Full Flow (MVP)
+- [ ] UI latautuu ilman console erroria
+- [ ] List: taskit näkyvät (GET /tasks)
+- [ ] Create: uuden taskin luonti onnistuu (POST /tasks)
+- [ ] Update (status): status vaihtuu todo ↔ done (PATCH /tasks/:id)
+- [ ] Update (title): title päivittyy (PATCH /tasks/:id)
+- [ ] Delete: task poistuu ja ei enää löydy (DELETE /tasks/:id)
+
+Havainnot / bugit:
+Virheet ja juurisyyt (sinulla on jo ainakin nämä)
+/api/tasks 404 (GET + POST)
+Frekvenssi: 2 (GET + POST)
+Juurisyy: API-sopimus / konfiguraatio (väärä base path)
+await not allowed
+Frekvenssi: 1
+Juurisyy: tekninen toteutus (async puuttui event handlerista)
+Cannot GET / (kun public oli väärässä paikassa)
+Frekvenssi: 1
+Juurisyy: ympäristö / projektirakenne (static serve polku)

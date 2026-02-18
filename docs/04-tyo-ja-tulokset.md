@@ -31,6 +31,14 @@ Sprintti 3:
 Uusi domain-sääntö (status) toteutettiin testilähtöisesti ilman merkittäviä syntaksiongelmia.
 Sprintti 3:ssa yksikkötestaus varmisti status-validoinnin ja update-logiikan oikeellisuuden, mutta ei paljastanut middleware- tai HTTP-tason virheitä.
 
+## Sprintti 4
+
+Toteutettiin minimaalinen UI, joka mahdollistaa Create–List–Update–Delete -toiminnot selaimen kautta.
+
+UI yhdistettiin backend-rajapintaan Fetch API:lla. Kehitysvaiheessa havaittiin useita integraatioon liittyviä virheitä, kuten väärä API-base-path (/api/tasks vs /tasks) sekä async/await-syntaksivirhe event handlerissa.
+Testauksen painopiste siirtyi järjestelmätasolle (UI + API). Backendin yksikkö- ja integraatiotestit toimivat regressiosuojana.
+Empiirinen havainto: suurin osa virheistä liittyi rajapintasopimukseen tai konfiguraatioon, ei domain-logiikkaan.
+
 ## 2.2 Koodikatselmointi
 
 Koodikatselmoinnissa havaittiin erityisesti:
