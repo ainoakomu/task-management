@@ -5,6 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management</title>
+    <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 24px; }
+    main { max-width: 720px; margin: 0 auto; }
+    h1 { margin-top: 0; }
+    section { background: #f7f7f8; padding: 16px; border-radius: 12px; }
+    .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    input { padding: 10px; border-radius: 10px; border: 1px solid #ddd; flex: 1; min-width: 220px; }
+    button { padding: 10px 12px; border-radius: 10px; border: 1px solid #ddd; cursor: pointer; }
+    button:hover { filter: brightness(0.98); }
+    ul { list-style: none; padding: 0; margin: 0; }
+    li { display: flex; justify-content: space-between; align-items: center; gap: 12px;
+         padding: 10px 12px; background: white; border: 1px solid #eee; border-radius: 12px; margin-top: 8px; }
+    .meta { display: flex; gap: 8px; align-items: center; }
+    .badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid #ddd; }
+    .badge.todo { background: #fff7ed; }
+    .badge.done { background: #ecfdf5; }
+    #status { margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: #eef2ff; }
+    .danger { border-color: #fca5a5; }
+  </style>
 </head>
 <main>
     <h1>Task Management App</h1>
