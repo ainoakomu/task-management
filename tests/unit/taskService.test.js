@@ -25,6 +25,18 @@ describe("TaskService", () => {
       await expect(service.createTask({ title: "" })).rejects.toBeInstanceOf(ValidationError);
       expect(fakeRepo.create).not.toHaveBeenCalled();
     });
+
+    test("accepts task with in_progress status", async () => {
+      const fakeRepo = {
+        create: jest.fn(async (task) => ({ id: "1", ...task })),
+      };
+
+      const service = createTaskService({ taskRepo: fakeRepo });
+      const result = await service.createTask({ title: "In progress task", status: "in_progress" });
+
+      expect(fakeRepo.create).toHaveBeenCalledTimes(1);
+      expect(result.status).toBe("in_progress");
+    });
   });
 
   //testataan taskien hakua id:llä
@@ -49,6 +61,24 @@ describe("TaskService", () => {
       const service = createTaskService({ taskRepo: fakeRepo });
 
       await expect(service.getTask("Missing")).rejects.toBeInstanceOf(NotFoundError);
+    });
+
+    test("throws NotFoundError with correct message containing task id", async () => {
+      const fakeRepo = {
+        findById: jest.fn(async () => null),
+      };
+
+      const service = createTaskService({ taskRepo: fakeRepo });
+      const taskId = "test-id-123";
+
+      try {
+        await service.getTask(taskId);
+        fail("Should have thrown NotFoundError");
+      } catch (err) {
+        expect(err).toBeInstanceOf(NotFoundError);
+        expect(err.message).toContain("Task with id");
+        expect(err.message).toContain(taskId);
+      }
     });
   });
   //testataan taskien listan toimintaa
@@ -144,6 +174,24 @@ describe("TaskService", () => {
       await expect(service.updateTask("missing", { title: "Ok" })).rejects.toBeInstanceOf(NotFoundError);
     });
 
+    test("throws NotFoundError with correct message when task not found during update", async () => {
+      const fakeRepo = {
+        update: jest.fn(async () => null),
+      };
+
+      const service = createTaskService({ taskRepo: fakeRepo });
+      const taskId = "update-test-id";
+
+      try {
+        await service.updateTask(taskId, { title: "Ok" });
+        fail("Should have thrown NotFoundError");
+      } catch (err) {
+        expect(err).toBeInstanceOf(NotFoundError);
+        expect(err.message).toContain("Task with id");
+        expect(err.message).toContain(taskId);
+      }
+    });
+
     test("throws NotFoundError when validation passes but task does not exist", async () => {
       const fakeRepo = {
         update: jest.fn(async () => null),
@@ -177,6 +225,24 @@ describe("TaskService", () => {
       const service = createTaskService({ taskRepo: fakeRepo });
 
       await expect(service.deleteTask("missing")).rejects.toBeInstanceOf(NotFoundError);
+    });
+
+    test("throws NotFoundError with correct message when task not found during delete", async () => {
+      const fakeRepo = {
+        remove: jest.fn(async () => false),
+      };
+
+      const service = createTaskService({ taskRepo: fakeRepo });
+      const taskId = "delete-test-id";
+
+      try {
+        await service.deleteTask(taskId);
+        fail("Should have thrown NotFoundError");
+      } catch (err) {
+        expect(err).toBeInstanceOf(NotFoundError);
+        expect(err.message).toContain("Task with id");
+        expect(err.message).toContain(taskId);
+      }
     });
   });
 });
