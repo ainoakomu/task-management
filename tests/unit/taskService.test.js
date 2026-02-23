@@ -73,7 +73,6 @@ describe("TaskService", () => {
 
       try {
         await service.getTask(taskId);
-        fail("Should have thrown NotFoundError");
       } catch (err) {
         expect(err).toBeInstanceOf(NotFoundError);
         expect(err.message).toContain("Task with id");
@@ -184,7 +183,7 @@ describe("TaskService", () => {
 
       try {
         await service.updateTask(taskId, { title: "Ok" });
-        fail("Should have thrown NotFoundError");
+        throw new Error("Should have thrown NotFoundError");
       } catch (err) {
         expect(err).toBeInstanceOf(NotFoundError);
         expect(err.message).toContain("Task with id");
@@ -237,7 +236,7 @@ describe("TaskService", () => {
 
       try {
         await service.deleteTask(taskId);
-        fail("Should have thrown NotFoundError");
+        throw new Error("Should have thrown NotFoundError");
       } catch (err) {
         expect(err).toBeInstanceOf(NotFoundError);
         expect(err.message).toContain("Task with id");
