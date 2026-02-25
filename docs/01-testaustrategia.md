@@ -133,4 +133,4 @@ Kerättyä dataa hyödynnetään loppuraportin analyysiosiossa.
 Projektissa ei toteuteta:
 Suorituskykytestausta
 Turvallisuustestausta
-KuormitustestaustaTestausstrategia
+Kuormitustestausta
