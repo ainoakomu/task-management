@@ -1,6 +1,6 @@
 # Task Management Service - Project Overview
 
-## 📋 Project Purpose
+## Project Purpose
 
 This project demonstrates **Test-Driven Development (TDD)** practices by implementing a minimal but fully-featured task management API. The goal is to showcase clean architecture, separation of concerns, and quality assurance through comprehensive automated testing.
 
@@ -10,7 +10,7 @@ This project demonstrates **Test-Driven Development (TDD)** practices by impleme
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Core Technologies
 - **Runtime**: Node.js
@@ -26,7 +26,7 @@ This project demonstrates **Test-Driven Development (TDD)** practices by impleme
 
 ---
 
-## 🏗️ Architecture & Layers
+## Architecture & Layers
 
 The project follows a **layered architecture** pattern for clean code organization:
 
@@ -69,7 +69,7 @@ The project follows a **layered architecture** pattern for clean code organizati
 
 ---
 
-## 📚 Core Features
+## Core Features
 
 ### Task Management Operations
 
@@ -95,7 +95,7 @@ The project follows a **layered architecture** pattern for clean code organizati
 
 ---
 
-## 🧪 Testing Strategy
+## Testing Strategy
 
 ### Multi-Level Testing Approach
 
@@ -134,7 +134,7 @@ npm run mutation             # Run mutation testing
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 task-management/
@@ -164,7 +164,8 @@ task-management/
 │   ├── 03-sprinttiloki.md      # Sprint logs
 │   ├── 04-tyo-ja-tulokset.md   # Work & results
 │   ├── 05-reflektio.md         # Reflections
-│   └── 06-osaamistavoitteet-matriisi.md # Skills matrix
+│   ├── 06-suunnitelma.md       # Sprint planning
+│   └── 07-code-review-checklist.md # Code review criteria
 │
 ├── public/                      # Static files
 │   ├── index.html              # UI
@@ -184,7 +185,7 @@ task-management/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Installation
 ```bash
@@ -211,7 +212,7 @@ npm run mutation   # Mutation testing
 
 ---
 
-## 📊 Key Development Practices
+## Key Development Practices
 
 ### Test-Driven Development (TDD)
 - **Red**: Write failing test
@@ -240,7 +241,7 @@ npm run mutation   # Mutation testing
 
 ---
 
-## 📖 Documentation Map
+## Documentation Map
 
 | Document | Purpose |
 |----------|---------|
@@ -250,11 +251,12 @@ npm run mutation   # Mutation testing
 | [03-sprinttiloki.md](03-sprinttiloki.md) | Sprint progress logs and timeline |
 | [04-tyo-ja-tulokset.md](04-tyo-ja-tulokset.md) | Implementation details and results |
 | [05-reflektio.md](05-reflektio.md) | Project reflections and lessons learned |
-| [06-osaamistavoitteet-matriisi.md](06-osaamistavoitteet-matriisi.md) | Learning objectives achievement matrix |
+| [06-suunnitelma.md](06-suunnitelma.md) | Sprint planning and project roadmap |
+| [07-code-review-checklist.md](07-code-review-checklist.md) | Code review criteria and quality checklist |
 
 ---
 
-## 🎯 Project Goals
+## Project Goals
 
 1. **Demonstrate TDD**: Show practical test-first development
 2. **Clean Architecture**: Implement layered, maintainable code structure
@@ -265,11 +267,11 @@ npm run mutation   # Mutation testing
 
 ---
 
-## ✅ Success Criteria
+## Success Criteria
 
-- ✓ All tests passing (unit + integration)
-- ✓ Zero linting errors
-- ✓ High mutation test score (quality tests)
-- ✓ Complete API implementation
-- ✓ Proper error handling
-- ✓ Clear code organization and documentation
+- All tests passing (unit + integration)
+- Zero linting errors
+- High mutation test score (quality tests)
+- Complete API implementation
+- Proper error handling
+- Clear code organization and documentation
