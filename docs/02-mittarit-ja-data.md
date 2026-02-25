@@ -16,3 +16,7 @@
 | 4 | Integraatio | Väärä API-polku | UI ↔ API | UI ei saanut dataa |
 | 4 | Integraatio | async/await-virhe | `ui.js` | UI ei päivittänyt |
 | 4 | CI | Tyhjä testitiedosto | GitHub Actions | CI epäonnistui |
+| 5 | Mutaatio (Stryker) | Puutteelliset unit-testit | `taskService` | Paljasti heikot testit |
+| 5 | Mutaatio (Stryker) | Error-polkujen alitestaus | Domain-virheet | Testit jäivät väärille riveille |
+| 5 | Katselmointi | Dokumentaation puutteet | docs/ | Selkeytti prosessia |
+| 5 | CI / GitHub Actions | GitHub Actions pipeline vihreä | All tests | Automatisointi valmis |

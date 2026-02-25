@@ -1,190 +1,80 @@
- Mitä toteutettiin?
+## Sprintti 1
 
-Mitä virheitä löytyi?
+Tämä sprintti oli ihan perus “lähdetään liikkeelle” -vaihe.
+Alustin projektin aiheen, mietin aikataulun ja työkalut ja palautin aihe- ja osaamistavoitteet Moodleen. Tein Node-projektin, alustin gitin ja loin repon GitHubiin.
 
-Mikä menetelmä löysi ne?
+Ensimmäinen oikea tekninen askel oli title-validointi. Kirjoitin pari testiä, joissa tarkistetaan että title ei voi puuttua, olla tyhjä tai pelkkää whitespacea. Ajoin testit punaiseksi, loin ValidationError-luokan ja toteutin validateTask-funktion niin että testit menivät vihreäksi.
 
-Oliko jotain poikkeamaa TDD:stä?
-Sprintin reflektiomalli
-1. Mitä opin teknisesti?
+Tässä kohtaa Red–Green–Refactor oli vielä hyvin konkreettinen ja selkeä. Yhden funktion tasolla TDD tuntui loogiselta ja hallittavalta.
 
-Uusi käsite / työkalu
+Expressin rooli oli vielä vähän hämärä. Siksi kommentoin koodia aika paljon. Se hidasti tekemistä, mutta samalla auttoi ymmärtämään mitä oikeasti teen. Kirjoitin myös ensimmäistä versiota testaustrategiasta ja yritin etsiä lähteitä Google Scholarista. Osa oli maksumuurin takana, mikä vähän ärsytti.
 
-Mikä oli vaikeaa?
+Koodikatselmoinnissa huomattiin, että testien nimeäminen vaikuttaa yllättävän paljon luettavuuteen. Lisäksi päätettiin erottaa validointi omaksi moduulikseen. Se selkeytti rakennetta heti.
 
-Mikä selkeytyi?
-
-2. Miten TDD toimi tässä sprintissä?
-
-Oliko Red–Green–Refactor systemaattinen?
-
-Löytyikö virheitä testien avulla?
-
-Poikkesinko TDD:stä? Miksi?
-
-3. Miten sprinttirakenne (Scrum-ajattelu) vaikutti?
-
-Oliko tavoite selkeä?
-
-Oliko työ rajattua?
-
-Tuntuiko “valmis” selkeästi määritellyltä?
-
-4. Miten laadunvarmistus (CI, lint, katselmointi) vaikutti?
-
-Mitä paljastui?
-
-Mitä opin työkalujen roolista?
-
-5. Mitä tekisin toisin seuraavassa sprintissä?
- 
- 
-  ##  Sprintti 1
-
-Tein: Alustin projektin aiheen, aikataulun, mahdolliset työkalut sekä palautin aiheeni ja opintotavoitteiden kohdat Moodleen. Rakensin projektin, alustin gitin ja tein repon GitHubiin. Aloitin tehtävän titlen validoinnista. Testeihin tule pari kohtaa, jossa testataan onko title oikein. Sitten ajettiin se punaiseksi, luotiin oikea validationError ja sitten validateTask funktio, jotta testi meni vihreäksi. Tässä hyödynnettiin klassista Red-Green-Refactor. Jonkin verran on ongelmia ymmärtää Expressin roolia, joten siksi olen keskittynyt siihen että jokaisessa kohdassa olisi hyvä kommentti. Se helpottaa myös sinua, projektin lukijaa että myös minua oppijana. Kirjoitin myös jonkinverran jo testaustrategiaa ja aloin etsiä Google Scholarista tekstejä. Harmikseen osaan joutuisi kirjautua, tai ne ovat maksumuurin takana eikä UEFilla ole sinne pääsyä. 
-
-Koodikatselmoinnissa havaittiin, että testien nimeäminen vaikutti merkittävästi luettavuuteen. Rakennetta selkeytettiin erottamalla validointi omaksi moduulikseen.
-
+TDD tuntui tässä vaiheessa hyvältä työkalulta, mutta vielä aika pienessä mittakaavassa.
 
 ## Sprintti 2
 
-Työ: TaskRepo toteutettiin osittain TDD:stä poiketen ns. scaffolding-tyylisesti. Ensin määriteltiin TaskRepon vastuut ja “sopimus”, jonka jälkeen toteutettiin in-memory-implementaatio ja lopuksi sitä vastaavat yksikkötestit. Tässä vaiheessa kehitystä ei siis edetty täysin testilähtöisesti, vaan testit kirjoitettiin toteutuksen jälkeen varmistamaan toiminnallisuus.
+Tässä sprintissä mentiin syvemmälle arkkitehtuuriin. Rakensin TaskRepon ja TaskServicen.
 
-TaskRepo on kuitenkin pidetty tarkoituksellisesti yksinkertaisena ja se sisältää vain datan käsittelyyn liittyvän logiikan. Varsinainen liiketoimintalogiikka ja virheenkäsittely on eriytetty TaskService-kerrokseen.
+TaskRepo tehtiin vähän “epäpuhtaasti” TDD:n näkökulmasta. Ensin määriteltiin sopimus, sitten toteutus, ja vasta lopuksi testit. Tämä oli tavallaan scaffolding-tyyppinen ratkaisu. Tekoäly halu ensin tehdä rungon ja sitten vasta testit ja päädyin seuraamaan sitä ohjetta.
 
-TaskService toteutettiin TDD-prosessin mukaisesti: testit kirjoitettiin ensin ja toteutusta täydennettiin testien ohjaamana. Kehityksen aikana ilmeni virheitä myös “vihreissä” testiajoissa, jotka johtuivat puutteellisesta Jest-syntaksista (esim. toHaveBeenCalled("1") vs. toHaveBeenCalledTimes(1)). Nämä korjattiin testejä tarkentamalla, mikä vahvisti ymmärrystä testauskirjaston käytöstä.
+Repo pidettiin tietoisesti yksinkertaisena. Se käsittelee vain dataa. Liiketoimintalogiikka ja virheenkäsittely siirrettiin TaskServiceen.
 
-Yksikkötestaus löysi loogisia virheitä, kun taas koodikatselmointi paljasti rakenteellisia ongelmia, kuten vastuiden sekoittumista service- ja repo-kerrosten välillä.
+TaskService taas tehtiin selkeämmin TDD:llä. Testit ensin, sitten toteutus. Tässä vaiheessa tuli vastaan myös testikirjaston kanssa pieniä kompastumisia. Esimerkiksi toHaveBeenCalled("1") vs. toHaveBeenCalledTimes(1). Testit näyttivät vihreää, mutta assert oli väärin. Se oli hyvä muistutus siitä, että testikoodikin voi olla rikki. Huomaako että aloittelijan virheitä..
 
+Yksikkötestit löysivät loogisia virheitä, kuten virheenkäsittelyyn liittyviä puutteita. Koodikatselmointi taas paljasti rakenteellisia asioita, esimerkiksi vastuiden sekoittumista service- ja repo-kerrosten välillä.
 
-## Sprint 3
-Sprint 3 aloitettiin lisäämällä uusi domain-sääntö tehtävän tilalle (status).
-TDD-menetelmän mukaisesti kirjoitettiin ensin epäonnistuva yksikkötesti, joka määritteli vaaditun toiminnallisuuden ennen varsinaista toteutusta.
+Tässä kohtaa alkoi hahmottua, että eri laadunvarmistusmenetelmät löytävät eri asioita. Unit-testit eivät ole sama asia kuin hyvä rakenne. Myös paljon mietintää tekoälystä ja sen hallusinoinneista. Tekoälyn käyttä silti hermostuttaa paikoin.
 
- Toteutettiin REST: CRUD toiminnot. Oli virheita validoinnista, titleistä, ja joitakin import ongelmia
-Supertest, actionsin lint näytti suurimman osan ongelmista
-Actionsin käyttö on kivaa, ja kokoajan enemmän helpottuu ns kokonaisvaltainen ymmärrys.
-CRUD-tarkoitus on vielä vaikea ymmärtää, ja joskus lintin virheen tajuaminen.
-Jest sujuu mutkitta, mutta testitapauksien keksiminen on vaikeaa.
+## Sprintti 3
 
-Red-Green onnistuu mutta Refactor vaihe meinaa unohtua. Olen muistanut nyt CRUD vaiheessa sitä harjoittaa.
-Virheitä löytyi muutamia tässäkin sprintissä joita alla.
+Tämä oli selvästi isoin sprintti tähän mennessä. Tavoite oli: REST-rajapinta ja integraatiotestit. Mutta työmäärä oli iso, ja tekeminen oli välillä hidasta.
 
-Tavoite oli selkeä, mutta iso. Sen tekoo meni reilusti päivästä 5-6h tuntia. Ehkä sprintin rajaus olisi kokeneelle sopiva, mutta itselle vielä hidasta.
+Aloitin lisäämällä uuden domain-säännön status-kentälle TDD:n mukaisesti. Ensin epäonnistuva testi, sitten toteutus. Tämä sujui jo huomattavasti varmemmin kuin sprintti 1:ssä.
 
-Integraatiotesti paljasti middleware-järjestysvirheen
+Sen jälkeen toteutin CRUD-operaatiot: POST, GET, PATCH ja DELETE. Rakensin error-middlewaret ja kirjoitin integraatiotestit Supertestillä.
 
-Ongelma: express.json() oli reittien alla → req.body tyhjä → validi POST palautti 400.
+Tässä sprintissä alkoi tulla esiin oikeita integraatio-ongelmia.
 
-Miksi tärkeä: yksikkötestit eivät voi nähdä middleware-ketjua, integraatiotestit näkee.
+Yksi merkittävä bugi oli middleware-järjestys. express.json() oli väärässä kohdassa, jolloin req.body oli tyhjä. Validilta näyttävä POST palautti 400. Huomaa, etten tiennyt niiden järjestyksellä olevan väliä, sillä en ole koskaan aiemmin miettinyt sellaista.
 
-CommonJS export/import mismatch (repo factory)
+Toinen tärkeä havainto liittyi PATCH-operaatioon. Käytin aluksi samaa validointia kuin create-operaatiossa. Se vaati title-kentän, vaikka PATCH on osittainen päivitys. Tulos: validi status-päivitys palautti 400. Ratkaisu oli tehdä erillinen validateTaskPatch, jossa kentät ovat optional. Tämä oli enemmän API-sopimuksen kuin domain-logiikan virhe.
 
-Ongelma: require("./taskRepo.memory") palautti olion, mutta sitä käytettiin kuin funktiota → createTaskRepo is not a function.
+Lisäksi integraatiotestit paljastivat puuttuvia reittejä (GET /tasks, GET /tasks/:id, DELETE), jotka lisättiin vähitellen.
 
-Miksi tärkeä: konfiguraatio/arkkitehtuuri bugi, ei “domain-bugi”.
+CI ja ESLint löysivät käyttämättömiä parametreja, turhia importteja ja export/import mismatch -ongelman. Näitä ei olisi huomannut pelkillä testeillä. Staattinen analyysi alkoi tuntua oikeasti hyödylliseltä. Varsinkin kun projektin tiedostot kasvaa ja niitä on useita. Tuntuu että joskus jotain kirjoitusvirhettä täytyy ihan metsästää dokumenteista.
 
-PATCH käytti väärää validointia
+Red–Green onnistui pääosin, mutta Refactor-vaihe meinaa välillä unohtua. Tähän piti tietoisesti palata.
 
-Ongelma: updateTask validoi patchin validateTask-funktiolla, joka vaatii titleä → 400 vaikka status oli validi.
-Korjaus: validateTaskPatch (partial update).
-Miksi tärkeä: API-sopimus (PATCH) ≠ create-sopimus.
-ESLint
+Tässä sprintissä alkoi näkyä selvästi, että virheet siirtyvät domain-tasolta kerrosten välisiin rajapintoihin. Eli liikutaan kokoajan syvemmille vesille.
 
-Ongelma: unused next, unused validateTask, unused res testissä.
-Miksi tärkeä: CI varmistaa laadun myös “vihreissä testeissä”.
-Menetelmä: Unit test (Jest)
-Löydös: Cannot find module '../../src/errors'
-Missä: tests/unit/taskStatus.test.js
-Syy: Virheellinen import-polku / tiedostonimi
-Korjaus: Polun yhtenäistäminen toimivien testien kanssa
+## Sprintti 4
 
-Menetelmä: integraatiotesti (supertest)
-Löydös: validi POST palautti 400
-Juuri-syy: express.json() middleware oli reitin jälkeen → req.body tyhjä
-Korjaus: middleware siirrettiin reittien yläpuolelle
+Tässä sprintissä tehtiin UI. Tämä ei mennyt TDD:llä, eikä ollut tarkoituskaan.
 
+Backend on projektin varsinainen tutkimuskohde. UI toimii enemmän demonstraatiokerroksena. TDD:tä käytettiin siellä missä se tuottaa eniten arvoa. Tässä projektissa suurin arvo oli domain-logiikassa, API-sopimuksessa ja virheenkäsittelyssä, ei käyttöliittymän napeissa. En myöskään ollut varma kuinka paljon uskallan antaa aikaa UI tekemiseen, sillä se voisi riistäytyä käsistä. (Innokas WOH1 kävijä täällä)
 
+Rakensin yksinkertaisen full flow -toiminnallisuuden: listaus, luonti, päivitys ja poisto.
 
-Menetelmä: Staattinen analyysi (ESLint, GitHub Actions)
-Löydös: 'next' is defined but never used (src/app.js, error-middleware)
-Juuri-syy: Error-middleware määriteltiin Expressin vaatimalla neljän parametrin muodolla (err, req, res, next), mutta next-parametria ei käytetty, mikä aiheutti ESLint-varoituksen.
-Korjaus: Parametri nimettiin muotoon _next, jolloin middleware säilyi Express-yhteensopivana ja lint-virhe poistui.
-Havainto: Staattinen analyysi paljasti koodin laatuun liittyvän ongelman, jota yksikkö- tai integraatiotestit eivät olisi löytäneet.
+UI:n kanssa tuli enemmän konfiguraatio- ja ympäristövirheitä:
 
-Menetelmä: integraatiotesti (supertest)
-Löydös: GET /tasks puuttui (404)
-Korjaus: lisättiin GET-reitti, joka palauttaa listan
+väärä base path (/api/tasks vs /tasks) (osaanko lukea omaa koodia kun tuollaiset unohtui)
 
-Menetelmä: integraatiotesti
-Löydös: debug-logit jäivät vahingossa päälle
-Korjaus: poistettiin console.log ennen mergeä (CI-hygienia)
+async puuttui event handlerista
 
-Toteutettu:
-POST /tasks (luonti + validointi)
-GET /tasks (listaus)
-Error-middleware (400 / 404)
-Integraatiotestit supertestillä
-Löydökset:
-Middleware-järjestys vaikutti req.body:yn (express.json)
-CommonJS export/import mismatch (createTaskRepo)
-ESLint havaitsi käyttämättömän parametrin
+static serve väärässä paikassa, jolloin tuli “Cannot GET /”
 
-Havainto:
-Integraatiotestit paljastivat kerrosten yhteistoimintaan liittyviä virheitä, joita yksikkötestit eivät löytäneet.
-Menetelmä: integraatiotesti (supertest)
-Löydös: GET /tasks/:id puuttui → 404/route missing
-Korjaus: lisättiin reitti, joka kutsuu service.getTask
-Lisäksi: NotFoundError mapitettiin HTTP 404:ksi error-middlewarella
+Tosi innoissani että projekti lähestyy loppua, mutta jännittää olenko tehny riittävästi. Tuntuu että olen vain raapaissut pintaa testauksesta ja kaikesta siihen liittyvästä. Välillä myös mietin onko joku dysleksiä kun hirveistä typoista tulee path ongelmia.
 
-Menetelmä: Integraatiotesti (supertest)
-Löydös: PATCH palautti aluksi 400 myös validissa status-päivityksessä, ja “missing id” ei palauttanut 404:ää.
-Juuri-syy: Päivityksessä käytettiin create-validointia (validateTask), joka vaatii title-kentän, vaikka PATCH on osittainen päivitys.
-Korjaus: Toteutettiin validateTaskPatch, jossa kentät ovat optional (title/status validoidaan vain jos mukana). Tämän jälkeen validi päivitys palauttaa 200 ja puuttuva id palauttaa NotFoundErrorin kautta 404.
+## Sprintti 5
 
-Menetelmä: integraatiotesti
-Löydös: DELETE route puuttui
-Korjaus: toteutettiin DELETE /tasks/:id ja liitettiin service.deleteTaskiin
-Havainto: NotFoundError mapittuu 404:ksi error-middlewarella
+Viimeinen vaihe keskittyi mutaatiotestaukseen ja raportin viimeistelyyn.
 
-Menetelmä: ESLint (CI)
-Löydös: käyttämättömät importit ja testimuuttujat
-Korjaus: poistettiin turhat muuttujat
-Havainto: staattinen analyysi ylläpitää koodin siisteyttä myös toiminnallisesti oikein toimivassa tilanteessa
+Ajoin Strykerin ja mutation score oli noin 80 %. Copilot meinasi mennä solmuun kun pyysiin sitä miettimään mistä voisimme parantaa, mutta testien parannuksilla saatiin jo hyvä yli 90%. Kaikkia mutantteja ei saatu tapettua, mutta se on kuulemma (ehkä) ihan sallittua.
 
-## Sprint 4
+Mutaatiotestauksesta saatiin siis esille testien heikkouksia. Joissakin kohdissa assertit olivat liian yleisiä tai testit eivät tarkistaneet ehtoja riittävän tarkasti. Korkea coverage prosentti ei siis tarkota maailman parasta testausta.
 
-Lähettiin tekemään ensimmäistä UI puolta ja se ei mennyt TDD perusteisesti. UI täyty lähteä tekemään runkoa ja funktioita. Koska backend on projektin tärkein osa, jota tehdään TDDllä, UI on vain "extra" tai koriste, jolla saadaan esiin backendillä tehty työ. UI on kuin tukikerros
-UI toteutettiin ilman TDD-prosessia, koska projektin tutkimuksellinen ja pedagoginen fokus oli backend-kerroksen testauksessa. Käyttöliittymä toimi demonstraatiokerroksena, ei varsinaisena testattavana komponenttina.
-TDD ei ole uskonto.
-Sitä käytetään siellä missä se tuottaa eniten arvoa.
-Ja tässä projektissa suurin arvo oli:
-domain-logiikassa
-virheenkäsittelyssä
-API-sopimuksessa
-CI-putkessa
-Ei UI:n nappeissa.
+Loppuvaiheessa tein raportin hienosäätöä, luin artikkeleita ja valmistauduin videoesittelyyn.
 
-Ympäristö:
-- Node + Express käynnissä paikallisesti
-- UI: http://localhost:3000/
-
-# Full Flow (MVP)
-- [ ] UI latautuu ilman console erroria
-- [ ] List: taskit näkyvät (GET /tasks)
-- [ ] Create: uuden taskin luonti onnistuu (POST /tasks)
-- [ ] Update (status): status vaihtuu todo ↔ done (PATCH /tasks/:id)
-- [ ] Update (title): title päivittyy (PATCH /tasks/:id)
-- [ ] Delete: task poistuu ja ei enää löydy (DELETE /tasks/:id)
-
-Havainnot / bugit:
-Virheet ja juurisyyt (sinulla on jo ainakin nämä)
-/api/tasks 404 (GET + POST)
-Frekvenssi: 2 (GET + POST)
-Juurisyy: API-sopimus / konfiguraatio (väärä base path)
-await not allowed
-Frekvenssi: 1
-Juurisyy: tekninen toteutus (async puuttui event handlerista)
-Cannot GET / (kun public oli väärässä paikassa)
-Frekvenssi: 1
-Juurisyy: ympäristö / projektirakenne (static serve polku)
+Kokonaisuutena sprintit muodostavat aika selkeän kehityskaaren. Alussa kamppailin yksittäisten funktioiden kanssa. Keskivaiheessa arkkitehtuuri ja rajapinnat nousivat keskiöön. Lopussa tarkasteltiin testien laatua ja kokonaisuutta. Akateemisten tekstien läpikäynti on yllättävän hidasta ja raportin työskentely myös.
