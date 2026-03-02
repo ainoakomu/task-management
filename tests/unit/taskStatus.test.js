@@ -7,7 +7,7 @@ describe("Task status validation", () => {
   test("task with invalid status is rejected", () => {
     const task = {
       title: "Test task",
-      status: "finished", 
+      status: "finished" //virheellinen status, 
     };
     expect(() => validateTask(task)).toThrow(ValidationError);
   });

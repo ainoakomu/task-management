@@ -16,7 +16,7 @@ E.M Maximilien ja L .Williams kirjoittivat paperissaan “Assessing test-driven 
 
 Kysyimme Microsoft Copilotilta, miten projektimme näin jälkikäteen sopisi yhteen IEEE 29119-standardien kanssa. Projektimme testistrategia, testitapaukset, raportointi ja metriikat dokumentaatiossa olivat hyväksyttäviä, mutta projektiltamme puuttui erillinen Test Design Specification, Test Execution Reportin malli ja traceability matriisi. Huomataan, että tekoäly avusteisesti teimme paljon hyväksyttävästi, mutta meiltä jäi puuttumaan useita kohtia IEEE 29119:stä. Yksilötyöskentely tekoälyn kanssa vaatii tarkkaa silmää, ja huomaamme että täysin IEEE 29119 seuraaminen ei jälkikäteen tarkistaessa onnistunut.
 
-## 2. Elinkaarimalli ja jatkuva testaus
+## 2. Elinkaarimalli ja jatkuva testaus Test Design Specification, T
 
 Kuten jo käsitelimme, valitsimme TDD sen iteratiivisuuden ja tehokkuuden takia. Projektin välipalautukset sopivat jo valmiiksi sprintteihin ja ketterään työskentelyyn, joten oli helppoa yhdistää Scrum-tyylinen työtapa ja TDD. Meillä on myös empiiristä tutkimusta, että TDD edesauttaa kehittäjien produktiivisuutta ja parantaa ohjelmistojen laatua, myös akateemisessa ympäristössä. (C. Desai, D. Janzen, & K. Savage ) On siis sopivaa yhdistää TDD kokonaisvaltaisena työtapana projektityötä edistäessä. 
 
@@ -140,19 +140,17 @@ Työskentelyssä on pyritty noudattamaan TDD:n ja scrumin pääpiirteitä, ja hy
 
 ## Lähteet 
 
-Beck, K. (2003). Test-driven development: By example. Addison-Wesley. (linkki) 
+Beck, K. (2003). Test-driven development: By example. Addison-Wesley.https://archive.org/details/est-driven-development-by-example 
 
- 
+Boehm, B. W. (1988). A spiral model of software development and enhancement. https://www.cse.msu.edu/~cse435/Homework/HW3/boehm.pdf
 
-Boehm, B. W. (1988). A spiral model of software development and enhancement.  (linkki) 
+Bull, C., & Kharrufa, A. (2023). Generative AI assistants in software development education: A vision for integrating generative AI into educational practice, not instinctively defending against it. https://arxiv.org/abs/2303.13936 
 
-Bull, C., & Kharrufa, A. (2023). Generative AI assistants in software development education: A vision for integrating generative AI into educational practice, not instinctively defending against it. (linkki) 
+Cohn, M. (2009). Succeeding with Agile: Software development using Scrum. Addison-Wesley. ISBN 978-0321579362.
 
-Cohn, M. (2009). Succeeding with Agile: Software development using Scrum. Addison-Wesley. (linkki) 
+Desai, C., Janzen, D., & Savage, K. (2008). A survey of evidence for test-driven development in academia.ACM SIGCSE Bulletin, 40(1), 97–101. DOI: 10.1145/1352135.1352166
 
-Desai, C., Janzen, D., & Savage, K. (2008). A survey of evidence for test-driven development in academia.  (linkki) 
-
-Dhivya, D., et al. (2018). Study on integration testing and system testing. (linkki) 
+Dhivya, D., et al. (2018). Study on integration testing and system testing.International Journal of Pure and Applied Mathematics, 119(15), 1085–1092. ISSN 1314-3395.
 
 Dybå, T., & Dingsøyr, T. (2008). Empirical studies of agile software development: A systematic review. Information and Software Technology, 50(9–10), 833–859. https://doi.org/10.1016/j.infsof.2008.01.006 
 
@@ -164,7 +162,7 @@ Meneely, A., & Williams, L. (2009). Secure open source collaboration: An empiric
 
 Sauvola, J., Tarkoma, S., Klemettinen, M., Riekki, J., & Doermann, D. (2024). Future of software development with generative AI. https://doi.org/10.1007/s10515-024-00426-z 
 
-Stecklein, J. M., Dabney, J. B., & Dick, B. (2004). Error cost escalation through the project life cycle. (linkki) 
+Stecklein, J. M., Dabney, J. B., & Dick, B. (2004). Error cost escalation through the project life cycle.
 
 Trinh, H., & Doan, T. (2016). Implementation of continuous integration and continuous delivery in Scrum-based projects. Theseus. 
 
