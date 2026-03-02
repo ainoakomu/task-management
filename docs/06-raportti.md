@@ -16,7 +16,7 @@ E.M Maximilien ja L .Williams kirjoittivat paperissaan “Assessing test-driven 
 
 Kysyimme Microsoft Copilotilta, miten projektimme näin jälkikäteen sopisi yhteen IEEE 29119-standardien kanssa. Projektimme testistrategia, testitapaukset, raportointi ja metriikat dokumentaatiossa olivat hyväksyttäviä, mutta projektiltamme puuttui erillinen Test Design Specification, Test Execution Reportin malli ja traceability matriisi. Huomataan, että tekoäly avusteisesti teimme paljon hyväksyttävästi, mutta meiltä jäi puuttumaan useita kohtia IEEE 29119:stä. Yksilötyöskentely tekoälyn kanssa vaatii tarkkaa silmää, ja huomaamme että täysin IEEE 29119 seuraaminen ei jälkikäteen tarkistaessa onnistunut.
 
-## 2. Elinkaarimalli ja jatkuva testaus Test Design Specification, T
+## 2. Elinkaarimalli ja jatkuva testaus
 
 Kuten jo käsitelimme, valitsimme TDD sen iteratiivisuuden ja tehokkuuden takia. Projektin välipalautukset sopivat jo valmiiksi sprintteihin ja ketterään työskentelyyn, joten oli helppoa yhdistää Scrum-tyylinen työtapa ja TDD. Meillä on myös empiiristä tutkimusta, että TDD edesauttaa kehittäjien produktiivisuutta ja parantaa ohjelmistojen laatua, myös akateemisessa ympäristössä. (C. Desai, D. Janzen, & K. Savage ) On siis sopivaa yhdistää TDD kokonaisvaltaisena työtapana projektityötä edistäessä. 
 
@@ -172,13 +172,11 @@ Big Bang -integraatio sopii pieniin ja rajattuihin projekteihin, mutta suuremmis
 
 ### 6.4 Standardien hyödyntäminen 
 
-Projektissa hyödynnettiin muun muassa HTTP-statuskoodeihin liittyviä vakiintuneita käytäntöjä sekä yleisiä testauksen periaatteita. Tämä riitti oppimisprojektin kontekstissa. 
+Konkreettisena esimerkkinä standardien hyödyntämisestä voidaan mainita testauksen dokumentointistandardit, kuten muodolliset testisuunnitelmat, testitapausmäärittelyt ja jäljitettävyysmatriisit. Tässä projektissa emme laatineet erillistä muodollista testisuunnitelmadokumenttia standardoidussa muodossa, vaan dokumentointi toteutettiin kevyemmin. Oppimisprojektissa tämä oli perusteltua, koska järjestelmä oli rajattu ja testit toimivat osittain myös dokumentaationa. 
 
-Jos kyseessä olisi ollut esimerkiksi julkishallinnon järjestelmä, sertifiointia vaativa ohjelmisto tai turvallisuuskriittinen sovellus olisi standardien (esim. testauksen dokumentointistandardien ja riskiperusteisen testauksen mallien) systemaattinen soveltaminen ollut perusteltua. Tähän liittyy myös 1.2 mainittu standardien kanssa tekeminen, jota arvostetaan julkishallinnon ja turvallisuuden aloilla erityisesti. 
+Jos kyseessä olisi ollut esimerkiksi julkishallinnon järjestelmä, sertifiointia vaativa ohjelmisto tai turvallisuuskriittinen sovellus olisi standardien (esim. testauksen dokumentointistandardien ja riskiperusteisen testauksen mallien) systemaattinen soveltaminen ollut perusteltua. Tällöin riskiperusteinen testaus ja standardoitu dokumentaatio eivät olisi pelkkää paperisotaa, vaan olennainen osa laadunhallintaa ja auditointikelpoisuutta.  
 
-Toisaalta pienessä projektissa liiallinen standardien noudattaminen voisi lisätä byrokratiaa ilman merkittävää laadullista hyötyä. Oppimisen ja tulevaisuuden työelämän kannalta voisi olla järkevää panostaa joskus niiden oppimiseen , joka voi toimia valttikorttina työmarkkinoilla. 
-
-Useat erilaiset sertifikaatit työntekijänä voivat auttaa saavuttamaan työpaikkoja, mutta myös ylläpitää omaa ammatillista pätevyyttä ja edistää muiden standardien omaksumisessa. 
+Toisaalta pienessä projektissa liiallinen standardien noudattaminen voisi lisätä byrokratiaa ilman merkittävää laadullista hyötyä.  Oppimisen ja tulevaisuuden työelämän kannalta voisi olla järkevää panostaa niiden oppimiseen, joka voi toimia valttikorttina työmarkkinoilla. Esimerkiksi ISO tai IEEE-standardit ovat yleisiä ja niistä voi oppia hyviä käytäntöjä myös harrastusprojekteihin. 1.2 kohdassa viitattu IEEE 29119 olisi mielestäni sellainen, johon haluaisin tutustua lähemmin jonkin projektin yhteydessä. 
 
 ### 6.5 Mutaatiotestaus 
 
