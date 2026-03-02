@@ -138,19 +138,71 @@ Lähtökohtaisesti uskon, että yksilön pitäisi pystyä olemaan ylpeä tai ain
 
 Työskentelyssä on pyritty noudattamaan TDD:n ja scrumin pääpiirteitä, ja hyödynnetty useita eri työkaluja tyydyttävän lopputuloksen saamiseksi. Ominaisuus ei ollut valmis ennen kuin yksikkötestit olivat vihreänä, integraatiotestit läpäisty ja CI hyväksyi muutoksen. Tämä lähestymistapa heijastaa alan käytäntöjä, joissa laatuportit ovat osa ammattimaista kehitystä. Ammatilliseen standardiin kuuluu myös teknisen velan hallinta. Refaktorointia tehtiin vain testien suojassa, mikä mahdollisti rakenteellisten parannusten tekemisen ilman regressioriskiä.
 
+## 6. Vaihtoehtoiset skenaariot 
+
+Projektissa tehdyt menetelmävalinnat palvelivat hyvin backend-painotteisen sovelluksen tavoitteita. Tarkastellaan, millaisissa tilanteissa vastaavia ratkaisuja ei välttämättä tehtäisi, ja miten lähestymistapa voisi muuttua eri konteksteissa. 
+
+### 6.1 Test-Driven Development 
+
+Projektissa TDD toimi erityisen hyvin domain- ja service-kerroksissa, joissa liiketoimintalogiikka ja validointisäännöt olivat keskiössä. On kuitenkin tapauksia, milloin TDD tai muut projektissamme valitut tavat eivät olisi ihanteellisiä. 
+
+TDD ei kuitenkaan ole universaali ratkaisu kaikkiin tilanteisiin. Jos tavoitteena olisi ollut nopea proof-of-concept tai käyttöliittymäprototyyppi, olisin voinut ensin toteuttaa toiminnallisuuden karkeasti ja lisätä testit jälkikäteen. Prototyypin testaus voisi olla paremmin esimerkiksi apina- tai smoketestausta kuin tarkkaa TDD:tä. 
+
+Käyttöliittymäkeskeisessä projektissa painotus voisi siirtyä enemmän hyväksyntätesteihin ja end-to-end-testeihin yksikkötestien sijaan. Puhuimme aiemmin, miten vesiputousmalli voi olla vaikea UI-painotteisessa projektissa, mutta myös pelkkä TDD voi olla riittämätön testauksen osalta. On siis tärkeää myös huomata tekniikoiden puutteet ja tarvittaessa muuttaa ja muokata niitä projekteihin sopivaksi. Vaikka elinkaarimallit ovat tärkeitä runkoja, eivät ne ole one-size-fits-all mallia.  
+
+Itse TDD on vahva silloin, kun järjestelmän ydin koostuu tarkasti määritellyistä säännöistä ja rajapinnoista, kuten meidän projektissamme. 
+
+### 6.2 Testitasoja eri järjestelmissä 
+
+Projektissa testaus toteutettiin kerroksittain: repository-, service-, API- ja pienesti UI-tasolla. Paino oli yksikkö- ja integraatiotestauksessa, mikä oli perusteltua backend-sovelluksessa. 
+
+Eri projekteissa testitasojen painotus voisi kuitenkin muuttua. Tuotantokäyttöön menevä julkinen API tarvitsisi enemmän kuormitustestausta, sopimustestausta sekä parempaa virhetilanteiden testausta kuin omassa projektissa. Mikropalveluarkkitehtuurin projektien integraatiorajapintojen vakaus on kaiken A ja O, eli versionhallinta ja consumer-driven sopimustestaus toimivat paremmin, kun projekti koostuu pienistä paloista. 
+
+Käyttöliittymäpainotteisista sovelluksista mainittiin jo hieman, eli End-To-End- testien osuutta kasvatettaisiin, koska UI:ssa käyttäjäkokemus ja käyttöpolut ovat kriittisimpiä osia toiminnan kannalta. 
+
+Testipyramidin painotus voi muuttua tilanteen mukaan. On hyvä tunnistaa projektin tärkeimmät palaset ja painottaa niiden toimintavarmuus testauksen osalta. Meidän projektimme kohdalla tärkein pala oli liiketoimintalogiikka ja silloin testipyramidi rakentui suhteellisen tasapainoisesti projektin koon huomioiden. 
+
+### 6.3 Integraatiostrategia 
+
+Projektissa myös integraatio eteni kerroksittain. Kohdassa 3.2 kerroimme miten projektimme käyttää Big Bang- integraatiota, jota voidaan sanoa myös bottom up- lähestymiseksi. 
+
+Jos järjestelmä olisi ollut suurempi ja monitiiminen, olisi ollut tärkeää tehdä tarkemmin suunniteltu integraatiostrategia, jossa rajapintasopimukset määriteltäisiin erikseen. Puolestaan turvallisuuskriittinen projekti, esimerkiksi valtiolle, tarvitsisi jäljitettävyyttä ja integraatiotestauksen dokumentointia, sillä tyypillisesti ne projekti ovat paljon muodollisempia ja hierarkkisempia.  
+
+Big Bang -integraatio sopii pieniin ja rajattuihin projekteihin, mutta suuremmissa järjestelmissä vaiheittainen integraatio ja jatkuva integraatio (CI) ovat hallittavampia ja riskittömämpiä ratkaisuja. 
+
+### 6.4 Standardien hyödyntäminen 
+
+Projektissa hyödynnettiin muun muassa HTTP-statuskoodeihin liittyviä vakiintuneita käytäntöjä sekä yleisiä testauksen periaatteita. Tämä riitti oppimisprojektin kontekstissa. 
+
+Jos kyseessä olisi ollut esimerkiksi julkishallinnon järjestelmä, sertifiointia vaativa ohjelmisto tai turvallisuuskriittinen sovellus olisi standardien (esim. testauksen dokumentointistandardien ja riskiperusteisen testauksen mallien) systemaattinen soveltaminen ollut perusteltua. Tähän liittyy myös 1.2 mainittu standardien kanssa tekeminen, jota arvostetaan julkishallinnon ja turvallisuuden aloilla erityisesti. 
+
+Toisaalta pienessä projektissa liiallinen standardien noudattaminen voisi lisätä byrokratiaa ilman merkittävää laadullista hyötyä. Oppimisen ja tulevaisuuden työelämän kannalta voisi olla järkevää panostaa joskus niiden oppimiseen , joka voi toimia valttikorttina työmarkkinoilla. 
+
+Useat erilaiset sertifikaatit työntekijänä voivat auttaa saavuttamaan työpaikkoja, mutta myös ylläpitää omaa ammatillista pätevyyttä ja edistää muiden standardien omaksumisessa. 
+
+### 6.5 Mutaatiotestaus 
+
+Mutaatiotestaus toimi tässä projektissa testien laadun arvioinnin välineenä. Se auttoi tunnistamaan tilanteita, joissa testit kyllä ajettiin, mutta eivät aidosti validoineet logiikkaa. Voisi myös kuvitella, että mutaatiotestaus auttaa tekemään jatkossa laadullisempeja testejä, jos mutaatiota käyttää aktiivisesti. Silloin voisi oppia tunnistamaan ne osa-alueet, jotka jäävät testeistä puutteellisiksi. 
+
+Yue Jia ja Mark Harman (2004) kuvailevat haasteeksi, miten laskennallisesti vaativaa on ajaa suuri joukko mutantteja. He myös puhuvat käsitteestä “human oracle problem”, jossa alkuperäisen ajon lopputulos täytyy verrata jokaiseen testitapaukseen. On siis mahdollista, että mutaatiotestaus lisää testitapauksia, joka puolestaan lisää “oracle” kustannusta. Tosin, artikkelissa käydään myös läpi tapoja, jotka vähentävä mutaatiotestauksen vaativuutta, eli myös niihin voisi tutusta tarkemmin. 
+
+Mutaatiotestaus, kuten muut käsitellyt testaustavat, ei ole aukoton. Sen käytöstä ja tarpeellisuudesta tulee päättää kontekstista riippuen. Tässä projektissa mutaatiotestaus oli vielä yksi laadunvarmistustyökalu, koska tavoitteena oli nimenomaan oppia testien laadun arviointia eikä ainoastaan saavuttaa korkeaa kattavuusprosenttia. 
+
+ 
+
 ## Lähteet 
 
-Beck, K. (2003). Test-driven development: By example. Addison-Wesley.https://archive.org/details/est-driven-development-by-example 
+Beck, K. (2003). Test-driven development: By example. Addison-Wesley archive.org/details/est-driven-development-by-example 
 
-Boehm, B. W. (1988). A spiral model of software development and enhancement. https://www.cse.msu.edu/~cse435/Homework/HW3/boehm.pdf
+Boehm, B. W. (1988). A spiral model of software development and enhancement. https://www.cse.msu.edu/~cse435/Homework/HW3/boehm.pdf  
 
-Bull, C., & Kharrufa, A. (2023). Generative AI assistants in software development education: A vision for integrating generative AI into educational practice, not instinctively defending against it. https://arxiv.org/abs/2303.13936 
+Bull, C., & Kharrufa, A. (2023). Generative AI assistants in software development education: A vision for integrating generative AI into educational practice, not instinctively defending against it. https://arxiv.org/abs/2303.13936  
 
-Cohn, M. (2009). Succeeding with Agile: Software development using Scrum. Addison-Wesley. ISBN 978-0321579362.
+Cohn, M. (2009). Succeeding with Agile: Software development using Scrum. Addison-Wesley. https://api.pageplace.de/preview/DT0400.9780321660510_A23552372/preview-9780321660510_A23552372.pdf  
 
-Desai, C., Janzen, D., & Savage, K. (2008). A survey of evidence for test-driven development in academia.ACM SIGCSE Bulletin, 40(1), 97–101. DOI: 10.1145/1352135.1352166
+Desai, C., Janzen, D., & Savage, K. (2008). A survey of evidence for test-driven development in academia. https://dl.acm.org/doi/epdf/10.1145/1383602.1383644  
 
-Dhivya, D., et al. (2018). Study on integration testing and system testing.International Journal of Pure and Applied Mathematics, 119(15), 1085–1092. ISSN 1314-3395.
+Dhivya, D., et al. (2018). Study on integration testing and system testing. https://www.ijcrt.org/papers/IJCRT1812329.pdf  
 
 Dybå, T., & Dingsøyr, T. (2008). Empirical studies of agile software development: A systematic review. Information and Software Technology, 50(9–10), 833–859. https://doi.org/10.1016/j.infsof.2008.01.006 
 
@@ -162,9 +214,11 @@ Meneely, A., & Williams, L. (2009). Secure open source collaboration: An empiric
 
 Sauvola, J., Tarkoma, S., Klemettinen, M., Riekki, J., & Doermann, D. (2024). Future of software development with generative AI. https://doi.org/10.1007/s10515-024-00426-z 
 
-Stecklein, J. M., Dabney, J. B., & Dick, B. (2004). Error cost escalation through the project life cycle.
+Stecklein, J. M. et al. (2004). Error cost escalation through the project life cycle. https://ntrs.nasa.gov/citations/20100036670  
 
-Trinh, H., & Doan, T. (2016). Implementation of continuous integration and continuous delivery in Scrum-based projects. Theseus. 
+Trinh, H., & Doan, T. (2016). Implementation of continuous integration and continuous delivery in Scrum-based projects. https://www.theseus.fi/bitstream/handle/10024/117725/Trinh_Huy.pdf?sequence=2&isAllowed=y  
+
+Yue Jia, Mark Harman. (2004) An Analysis and Survey of the Development of Mutation Testing. https://ieeexplore.ieee.org/abstract/document/5487526  
 
  
 
